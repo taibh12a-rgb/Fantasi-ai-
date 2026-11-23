@@ -20,7 +20,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: Build Android APK with Expo
+      - name: Link Expo project
+        run: npx eas-cli@latest init --force --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build Android APK
         run: npx eas-cli@latest build --platform android --profile preview --non-interactive --no-wait
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
